@@ -33,22 +33,73 @@ TEXTS = [
     garpike and stingray are also present.'''
 ]
 
+SPLIT = "-" * 40
+
 users = {'bob': '123', 'ann': 'pass123', 'mike': 'password123', 'liz': 'pass123'}
 
 
-login = input('Zadejte své uživatelské jméno: ')
-password = input('Zadejte své heslo: ')
+login = input('Username: ')
+password = input('Password: ')
 if login in users.keys() and password == users[login]:
-    print(f"Vítej {login}!")
+    print(f"Welcome to the app, {login}!\nWe have {len(TEXTS)} texts to be analysed.")
 else:
-    print("Zadané uživatelské jméno nebo heslo není platné.")
+    print("Unregistered user or invalid password. Terminating the program.")
     exit()
 
-chosen_text = input("Vyber číslo textu k analýze (1-3)")
+print(SPLIT)
+
+chosen_text = input(f"Enter the number between 1 and  {len(TEXTS)} to select: ")
 
 if not chosen_text.isdigit():
-    print("Toto není číslo. Program bude ukončen.")
+    print("Not a number. Terminating the program")
     exit()
 elif 0 > int(chosen_text) > len(TEXTS):
-    print("Toto číslo není ve správném rozsahu. Program bude ukončen.")
+    print("Wrong text number. Terminating the program")
     exit()
+
+print(SPLIT)
+
+source_text = TEXTS[int(chosen_text) - 1]
+
+word_count = len(source_text.split())
+
+titlecase_count = 0
+uppercase_count = 0
+lowercase_count = 0
+numeric_count = 0
+numeric_sum = 0
+
+for word in source_text.split():
+    if word.istitle():
+        titlecase_count += 1
+    if word.isupper():
+        uppercase_count += 1
+    if word.islower():
+        lowercase_count += 1
+    if word.isnumeric():
+        numeric_count += 1
+        numeric_sum += int(word)
+
+print(f"There are {word_count} word in the selected text.",
+      f"There are {titlecase_count} titlecase words.",
+      f"There are {uppercase_count} uppercase words.",
+      f"There are {lowercase_count} lowercase words.",
+      f"There are {numeric_count} numeric strings.",
+      f"The sum of all the numbers {numeric_sum}",
+      sep='\n')
+
+print(SPLIT)
+print('LEN|  OCCURENCES  |NR.')
+print(SPLIT)
+
+#   1|*                   |1
+#   2|**********          |10
+#   3|*****               |5
+#   4|***********         |11
+#   5|************        |12
+#   6|***                 |3
+#   7|****                |4
+#   8|*****               |5
+#   9|*                   |1
+#  10|*                   |1
+#  11|*                   |1
