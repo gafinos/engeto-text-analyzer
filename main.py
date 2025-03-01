@@ -44,3 +44,9 @@ else:
     print("Zadané uživatelské jméno nebo heslo není platné.")
     exit()
 
+chosen_text = input("Vyber číslo textu k analýze (1-3)")
+
+if type(chosen_text) != int() or chosen_text-1 > len(TEXTS):
+    print("To není správný vstup")
+    exit()
+
