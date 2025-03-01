@@ -46,7 +46,9 @@ else:
 
 chosen_text = input("Vyber číslo textu k analýze (1-3)")
 
-if type(chosen_text) != int() or chosen_text-1 > len(TEXTS):
-    print("To není správný vstup")
+if not chosen_text.isdigit():
+    print("Toto není číslo. Program bude ukončen.")
     exit()
-
+elif 0 > int(chosen_text) > len(TEXTS):
+    print("Toto číslo není ve správném rozsahu. Program bude ukončen.")
+    exit()
