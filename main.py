@@ -69,13 +69,15 @@ lowercase_count = 0
 numeric_count = 0
 numeric_sum = 0
 
+
 word_sizes = {}
 
 for word in source_text.split():
-    if word_sizes[word.count()] in word_sizes.keys:
-        word_sizes[word.count()] =+ 1
+
+    if len(word) in word_sizes.keys():
+        word_sizes[len(word)] += 1
     else:
-        word_sizes[word.count()] = 1
+        word_sizes[len(word)] = 1
     
     if word.istitle():
         titlecase_count += 1
@@ -96,24 +98,11 @@ print(f"There are {word_count} word in the selected text.",
       sep='\n')
 
 print(SPLIT)
-print('LEN|  OCCURENCES  |NR.')
+print(f"{'LEN':>3}", f"{'OCCURENCES':<20}", 'NR.', sep='|')
 print(SPLIT)
 
 sizes_sorted = sorted(word_sizes.keys())
 
 for size in sizes_sorted:
     bar = '*' * word_sizes[size]
-    print(size, f"{bar:> 20}", word_sizes[size], sep='|')
-
-
-#   1|*                   |1
-#   2|**********          |10
-#   3|*****               |5
-#   4|***********         |11
-#   5|************        |12
-#   6|***                 |3
-#   7|****                |4
-#   8|*****               |5
-#   9|*                   |1
-#  10|*                   |1
-#  11|*                   |1
+    print(f"{size:>3}", f"{bar:<20}", word_sizes[size], sep='|')
