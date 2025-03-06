@@ -40,7 +40,7 @@ users = {'bob': '123', 'ann': 'pass123', 'mike': 'password123', 'liz': 'pass123'
 
 login = input('Username: ')
 password = input('Password: ')
-if login in users.keys() and password == users[login]:
+if users.get(login) == password:
     print(f"Welcome to the app, {login}!\nWe have {len(TEXTS)} texts to be analysed.")
 else:
     print("Unregistered user or invalid password. Terminating the program.")
