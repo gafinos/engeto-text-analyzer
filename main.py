@@ -35,20 +35,25 @@ TEXTS = [
 
 SPLIT = "-" * 40
 
-users = {'bob': '123', 'ann': 'pass123', 'mike': 'password123', 'liz': 'pass123'}
+users = {'bob': '123',
+         'ann': 'pass123',
+         'mike': 'password123',
+         'liz': 'pass123'
+         }
 
 
 login = input('Username: ')
 password = input('Password: ')
 if users.get(login) == password:
-    print(f"Welcome to the app, {login}!\nWe have {len(TEXTS)} texts to be analysed.")
+    print(f"Welcome to the app, {login}!\n"
+          f"We have {len(TEXTS)} texts to be analysed.")
 else:
     print("Unregistered user or invalid password. Terminating the program.")
     exit()
 
 print(SPLIT)
 
-chosen_text = input(f"Enter the number between 1 and  {len(TEXTS)} to select: ")
+chosen_text = input(f"Enter the number between 1 and {len(TEXTS)} to select: ")
 
 if not chosen_text.isdigit():
     print("Not a number. Terminating the program")
@@ -72,7 +77,11 @@ numeric_sum = 0
 
 word_sizes = {}
 
-for word in source_text.replace(",","").replace(".","").replace("!","").replace("?","").split():
+for word in (source_text.replace(",","")
+             .replace(".","")
+             .replace("!","")
+             .replace("?","")
+             .split()):
 
     if len(word) in word_sizes.keys():
         word_sizes[len(word)] += 1
