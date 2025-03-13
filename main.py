@@ -58,7 +58,7 @@ chosen_text = input(f"Enter the number between 1 and {len(TEXTS)} to select: ")
 if not chosen_text.isdigit():
     print("Not a number. Terminating the program")
     exit()
-elif 0 > int(chosen_text) > len(TEXTS):
+elif not (0 > int(chosen_text) < len(TEXTS)):
     print("Wrong text number. Terminating the program")
     exit()
 
