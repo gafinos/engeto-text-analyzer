@@ -72,7 +72,7 @@ numeric_sum = 0
 
 word_sizes = {}
 
-for word in source_text.split():
+for word in source_text.replace(",","").replace(".","").replace("!","").replace("?","").split():
 
     if len(word) in word_sizes.keys():
         word_sizes[len(word)] += 1
