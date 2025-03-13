@@ -4,6 +4,8 @@ projekt_1: první projekt do Engeto Online Python Akademie
 author: Václav Špaček
 email: gafinos@gmail.com
 """
+import sys
+import string
 
 TEXTS = [
     '''Situated about 10 miles west of Kemmerer,
@@ -57,16 +59,14 @@ chosen_text = input(f"Enter the number between 1 and {len(TEXTS)} to select: ")
 
 if not chosen_text.isdigit():
     print("Not a number. Terminating the program")
-    exit()
-elif not (0 > int(chosen_text) < len(TEXTS)):
+    sys.exit()
+elif not (0 < int(chosen_text) <= len(TEXTS)):
     print("Wrong text number. Terminating the program")
-    exit()
+    sys.exit()
 
 print(SPLIT)
 
 source_text = TEXTS[int(chosen_text) - 1]
-
-word_count = len(source_text.split())
 
 titlecase_count = 0
 uppercase_count = 0
@@ -74,15 +74,14 @@ lowercase_count = 0
 numeric_count = 0
 numeric_sum = 0
 
-
 word_sizes = {}
 
-for word in (source_text.replace(",","")
-             .replace(".","")
-             .replace("!","")
-             .replace("?","")
-             .split()):
+clean_text = "".join(character for character in source_text
+                     if character not in string.punctuation)
 
+word_count = len(clean_text.split())
+
+for word in clean_text.split():
     if len(word) in word_sizes.keys():
         word_sizes[len(word)] += 1
     else:
